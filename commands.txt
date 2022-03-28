@@ -1,0 +1,32 @@
+pip install django
+
+django-admin startproject mysite
+
+cd mysite
+
+python manage.py runserver
+
+python manage.py migrate
+
+python manage.py createsuperuser
+
+python manage.py startapp polls
+
+// after making changest to models.py
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py shell
+>>> import django
+>>> django.setup()
+>>> from polls.models import Question, Choice
+>>> Question.objects.all()
+>>> from django.utils import timezone
+>>> q = Question(question_text = "What's your name", pub_date = timezone.now()) 
+>>> q.save()
+>>> exit()
+>>> q = Question.objects.get(pk=1)
+>>> q.choice_set.create(choice_text = "bob", votes = 0)
+>>> q.choice_set.create(choice_text = "rachel", votes = 0)
+>>> q.choice_set.create(choice_text = "fred", votes = 0)
+
